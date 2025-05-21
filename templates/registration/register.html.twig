@@ -1,0 +1,28 @@
+{# templates/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация нового клиента{% endblock %}
+
+{% block body %}
+    <h1>Регистрация нового клиента</h1>
+
+    {# Отображение флеш-сообщений #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstName) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.phoneNumber) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.education) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+    {{ form_end(registrationForm) }}
+{% endblock %} 

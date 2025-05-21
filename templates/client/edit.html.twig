@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Редактирование клиента: {{ client.firstName }} {{ client.lastName }}{% endblock %}
+
+{% block body %}
+    <h1>Редактирование клиента: {{ client.firstName }} {{ client.lastName }} (ID: {{ client.id }})</h1>
+
+    {{ form_start(editForm) }}
+        {{ form_row(editForm.firstName) }}
+        {{ form_row(editForm.lastName) }}
+        {{ form_row(editForm.phoneNumber) }}
+        {{ form_row(editForm.email) }}
+        {{ form_row(editForm.education) }}
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        <a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-secondary">Отмена</a>
+    {{ form_end(editForm) }}
+{% endblock %} 

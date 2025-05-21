@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Карточка клиента: {{ client.firstName }} {{ client.lastName }}{% endblock %}
+
+{% block body %}
+    <h1>Карточка клиента: {{ client.firstName }} {{ client.lastName }}</h1>
+
+    {# Отображение флеш-сообщений (если есть после редактирования) #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>{{ client.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>{{ client.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Номер телефона</th>
+                <td>{{ client.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Э-почта</th>
+                <td>{{ client.email }}</td>
+            </tr>
+            <tr>
+                <th>Образование</th>
+                <td>{{ client.education }}</td>
+            </tr>
+            <tr>
+                <th>Согласие на обработку ПД</th>
+                <td>{{ client.consentProcessingPersonalData ? 'Да' : 'Нет' }}</td>
+            </tr>
+            <tr>
+                <th>Скоринг</th>
+                <td>{{ client.scoring }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_client_list') }}" class="btn btn-secondary mr-2">Назад к списку</a> {# Добавил mr-2 для небольшого отступа #}
+    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-warning">Редактировать</a>
+    {# TODO: Добавить кнопку удаления (позже) #}
+{% endblock %} 
